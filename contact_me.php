@@ -1,21 +1,41 @@
 <?php
+require_once 'app/UploadedFile.php';
+require_once 'app/UploadManager.php';
+
 if($_POST)
 {
+
+foreach ($_FILES as $index => $file) {
+    $filePath = $_FILES[$index]['name'];
+    if (empty($filePath)) {
+        continue;
+    }
+    $uploadedFile = new UploadedFile($filePath);
+    $uploadManager = new UploadManager($uploadedFile, $index);
+    //$newName should be the unique file name i.e the name of the uploader from the form
+    $uploadManager->upload($newName);
+    
+}
+
+var_dump($uploadManager->getUploadedImagesUrl());
+
+exit; 
+
 	$to_Email   	= "amsd.register@gmail.com"; //Replace with recipient email address
 	$subject        = 'AMSD New Registration'; //Subject line for emails
 	
 	//check if its an ajax request, exit if not
-    if(!isset($_SERVER['HTTP_X_REQUESTED_WITH']) AND strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) != 'xmlhttprequest') {
-	
-		//exit script outputting json data
-		$output = json_encode(
-		array(
-			'type'=>'error', 
-			'text' => 'Request must come from Ajax'
-		));
-		
-		die($output);
-    } 
+//    if(!isset($_SERVER['HTTP_X_REQUESTED_WITH']) AND strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) != 'xmlhttprequest') {
+//	
+//		//exit script outputting json data
+//		$output = json_encode(
+//		array(
+//			'type'=>'error', 
+//			'text' => 'Request must come from Ajax'
+//		));
+//		
+//		die($output);
+//    } 
 	
 	//check $_POST vars are set, exit if any missing
 	if(!isset($_POST["userName"]) || !isset($_POST["userEmail"]) || !isset($_POST["userPhone"]) || !isset($_POST["userMessage"]))

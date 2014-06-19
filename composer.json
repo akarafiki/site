@@ -1,0 +1,15 @@
+{
+    "name": "rafiki/project1",
+    "description": "Website for Frank Osodi",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Rafiki",
+            "email": "aka_rafiki@yahoo.com"
+        }
+    ],
+    "minimum-stability": "beta",
+    "require": {
+
+    }
+}

@@ -212,57 +212,57 @@
 			
 			
 			// Email submit action			
-			$("#email_submit").click(function() { 
-									
-				$('#reply_message').removeClass();
-				$('#reply_message').html('')
-				var regEx = "";	 
-								
-				// validate Name				
-				var name = $("input#name").val();  
-				regEx=/^[A-Za-z .'-]+$/; 
-				if (name == "" || name == "Name"  || !regEx.test(name)) { 
-					$("input#name").val(''); 
-					$("input#name").focus();  
-					return false;  
-				}
-				
-				// validate Email						  
-				var email = $("input#email").val();  
-				regEx=/^[A-Za-z0-9._%-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}$/;											
-				if (email == "" || email == "Email" || !regEx.test(email)) { 
-					$("input#email").val(''); 
-					$("input#email").focus();  
-					return false;  
-				}  
-				
-				// validate comment			
-				var comments = $("textarea#comments").val(); 
-				if (comments == "" || comments == "Comments..." || comments.length < 2) { 
-					$("textarea#comments").val(''); 
-					$("textarea#comments").focus();  
-					return false;  
-				}  
-									
-				var dataString = 'name='+ $("input#name").val() + '&email=' + $("input#email").val() + '&comments=' + $("textarea#comments").val();									
-				$('#reply_message').addClass('email_loading');
-				
-				// Send form data to mailer.php 
-				$.ajax({
-					type: "POST",
-					url: "mailer.php",
-					data: dataString,
-					success: function() {
-						$('#reply_message').removeClass('email_loading');
-						$('#reply_message').addClass('list3');
-						$('#reply_message').html("Mail send sucessfully")
-						.hide()
-						.fadeIn(1500);
-							}
-						});
-				return false;
-				
-			});
+//			$("#email_submit").click(function() { 
+//									
+//				$('#reply_message').removeClass();
+//				$('#reply_message').html('')
+//				var regEx = "";	 
+//								
+//				// validate Name				
+//				var name = $("input#name").val();  
+//				regEx=/^[A-Za-z .'-]+$/; 
+//				if (name == "" || name == "Name"  || !regEx.test(name)) { 
+//					$("input#name").val(''); 
+//					$("input#name").focus();  
+//					return false;  
+//				}
+//				
+//				// validate Email						  
+//				var email = $("input#email").val();  
+//				regEx=/^[A-Za-z0-9._%-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}$/;											
+//				if (email == "" || email == "Email" || !regEx.test(email)) { 
+//					$("input#email").val(''); 
+//					$("input#email").focus();  
+//					return false;  
+//				}  
+//				
+//				// validate comment			
+//				var comments = $("textarea#comments").val(); 
+//				if (comments == "" || comments == "Comments..." || comments.length < 2) { 
+//					$("textarea#comments").val(''); 
+//					$("textarea#comments").focus();  
+//					return false;  
+//				}  
+//									
+//				var dataString = 'name='+ $("input#name").val() + '&email=' + $("input#email").val() + '&comments=' + $("textarea#comments").val();									
+//				$('#reply_message').addClass('email_loading');
+//				
+//				// Send form data to mailer.php 
+//				$.ajax({
+//					type: "POST",
+//					url: "mailer.php",
+//					data: dataString,
+//					success: function() {
+//						$('#reply_message').removeClass('email_loading');
+//						$('#reply_message').addClass('list3');
+//						$('#reply_message').html("Mail send sucessfully")
+//						.hide()
+//						.fadeIn(1500);
+//							}
+//						});
+//				return false;
+//				
+//			});
 				
 		});
 
@@ -271,86 +271,86 @@
 	
 	
 	<script type="text/javascript">
-$(document).ready(function() {
-    $("#submit_btn").click(function() { 
-        //get input field values
-		
-        var user_name       = $('input[name=name]').val(); 
-        var user_email      = $('input[name=email]').val();
-        var user_phone      = $('input[name=phone]').val();
-		var attach_file     = $('input[name=file_attach]')[0].files[0];
-        var user_message    = $('textarea[name=message]').val();
-        
-        //simple validation at client's end
-        //we simply change border color to red if empty field using .css()
-        var proceed = true;
-        if(user_name==""){ 
-            $('input[name=name]').css('border-color','red'); 
-            proceed = false;
-        }
-        if(user_email==""){ 
-            $('input[name=email]').css('border-color','red'); 
-            proceed = false;
-        }
-        if(user_phone=="") {    
-            $('input[name=phone]').css('border-color','red'); 
-            proceed = false;
-        }
-        if(user_message=="") {  
-            $('textarea[name=message]').css('border-color','red'); 
-            proceed = false;
-        }
-
-        //everything looks good! proceed...
-        if(proceed) 
-        {
-			$(".loading-img").show(); //show loading image
-			$(".submit_btn").hide(); //hide submit button
-			
-			//data to be sent to server			
-			var post_data = new FormData();    
-			post_data.append( 'userName', user_name );
-			post_data.append( 'userEmail', user_email );
-			post_data.append( 'userPhone', user_phone );
-			post_data.append( 'userMessage',user_message);
-			post_data.append( 'file_attach', attach_file );
-			
-			//instead of $.post() we are using $.ajax()
-			//that's because $.ajax() has more options and can be used more flexibly.
-			$.ajax({
-			  url: 'contact_me.php',
-			  data: post_data,
-			  processData: false,
-			  contentType: false,
-			  type: 'POST',
-			  dataType:'json',
-			  success: function(data){
-					//load json data from server and output message     
-					if(data.type == 'error')
-					{
-						output = '<div class="error">'+data.text+'</div>';
-					}else{
-						output = '<div class="success">'+data.text+'</div>';
-						
-						//reset values in all input fields
-						$('#contact_form input').val(''); 
-						$('#contact_form textarea').val(''); 
-					}
-					
-					$("#result").hide().html(output).slideDown(); //show results from server
-					$(".loading-img").hide(); //hide loading image
-					$(".submit_btn").show(); //show submit button
-			  }
-			});
-
-        }
-    });
+//$(document).ready(function() {
+//    $("#submit_btn").click(function() { 
+//        //get input field values
+//		
+//        var user_name       = $('input[name=name]').val(); 
+//        var user_email      = $('input[name=email]').val();
+//        var user_phone      = $('input[name=phone]').val();
+//		var attach_file     = $('input[name=file_attach]')[0].files[0];
+//        var user_message    = $('textarea[name=message]').val();
+//        
+//        //simple validation at client's end
+//        //we simply change border color to red if empty field using .css()
+//        var proceed = true;
+//        if(user_name==""){ 
+//            $('input[name=name]').css('border-color','red'); 
+//            proceed = false;
+//        }
+//        if(user_email==""){ 
+//            $('input[name=email]').css('border-color','red'); 
+//            proceed = false;
+//        }
+//        if(user_phone=="") {    
+//            $('input[name=phone]').css('border-color','red'); 
+//            proceed = false;
+//        }
+//        if(user_message=="") {  
+//            $('textarea[name=message]').css('border-color','red'); 
+//            proceed = false;
+//        }
+//
+//        //everything looks good! proceed...
+//        if(proceed) 
+//        {
+//			$(".loading-img").show(); //show loading image
+//			$(".submit_btn").hide(); //hide submit button
+//			
+//			//data to be sent to server			
+//			var post_data = new FormData();    
+//			post_data.append( 'userName', user_name );
+//			post_data.append( 'userEmail', user_email );
+//			post_data.append( 'userPhone', user_phone );
+//			post_data.append( 'userMessage',user_message);
+//			post_data.append( 'file_attach', attach_file );
+//			
+//			//instead of $.post() we are using $.ajax()
+//			//that's because $.ajax() has more options and can be used more flexibly.
+//			$.ajax({
+//			  url: 'contact_me.php',
+//			  data: post_data,
+//			  processData: false,
+//			  contentType: false,
+//			  type: 'POST',
+//			  dataType:'json',
+//			  success: function(data){
+//					//load json data from server and output message     
+//					if(data.type == 'error')
+//					{
+//						output = '<div class="error">'+data.text+'</div>';
+//					}else{
+//						output = '<div class="success">'+data.text+'</div>';
+//						
+//						//reset values in all input fields
+//						$('#contact_form input').val(''); 
+//						$('#contact_form textarea').val(''); 
+//					}
+//					
+//					$("#result").hide().html(output).slideDown(); //show results from server
+//					$(".loading-img").hide(); //hide loading image
+//					$(".submit_btn").show(); //show submit button
+//			  }
+//			});
+//
+//        }
+//    });
     
     //reset previously set border colors and hide all message on .keyup()
-    $("#contact_form input, #contact_form textarea").keyup(function() { 
-        $("#contact_form input, #contact_form textarea").css('border-color',''); 
-        $("#result").slideUp();
-    });
+//    $("#contact_form input, #contact_form textarea").keyup(function() { 
+//        $("#contact_form input, #contact_form textarea").css('border-color',''); 
+//        $("#result").slideUp();
+//    });
     
 });
 </script>
@@ -713,7 +713,7 @@ If you need to show the page content on full height (liquid height), just add th
                 
 				 
             		<!-- Add comment Form field -->
-					<form method="post" class="comments-form">
+                        <form method="post" class="comments-form" enctype= "multipart/form-data" action="contact_me.php">
                             
 						<fieldset id="contact_form">
 
@@ -783,7 +783,7 @@ If you need to show the page content on full height (liquid height), just add th
                         </label>						
     
                         <label for="email"><span>Email Address</span>
-                        <input type="email" name="email" id="email" placeholder="Enter Your Email" />
+<!--                        <input type="email" name="email" id="email" placeholder="Enter Your Email" />-->
                         </label>						
     
                         <label for="url"><span>Website Url</span>
@@ -875,21 +875,21 @@ If you need to show the page content on full height (liquid height), just add th
 						<strong>Click here for sample picture to upload</strong></a></p>
     
                         <label for="phone"><span>Upload Head Shot Photo</span>
-                        <input type="file" name="file_attach" id="file_attach" />
+                        <input type="file" name="file_attach_1" id="file_attach_1" />
                         </label>
 						
 						<label for="phone"><span>Upload Side View Photo</span>
-                        <input type="file" name="file_attach" id="file_attach" />
+                        <input type="file" name="file_attach_2" id="file_attach_2" />
                         </label>
 						
 						<label for="phone"><span>Upload Full View Photo</span>
-                        <input type="file" name="file_attach" id="file_attach" />
+                        <input type="file" name="file_attach_3" id="file_attac_3" />
                         </label>
 						<br/>
     
                         <label><span>&nbsp;</span>
 						
-                        <button class="submit_btn" id="submit_btn">Submit Entry</button>
+                            <button type="submit" class="submit_btn_DEP" id="submit_btn_DEP">Submit Entry</button>
                         <img src="ajax-loader.gif" class="loading-img" style="display:none">
                         </label>
                         </fieldset>
