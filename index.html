@@ -1,0 +1,1357 @@
+<!DOCTYPE html>
+
+<!-- /**
+	Africa's Male Supermodel Discovery | Responsive Creative website
+ 	Copyright (c) 2014, Critical Technology Unit 
+
+	Author: Critical Technology Unit 
+    Email: aka_rafiki@yahoo.com
+	
+    Version: 1.0.0
+	Release Date: 09 April 2014
+**/ -->	
+
+    <html lang="en"> 
+    
+    <head>
+
+	<!-- Basic Page Needs
+  ================================================== -->
+	<meta charset="utf-8">
+	<title>Africa's Male Supermodel Discovery</title>
+	<meta name="description" content="Africa's Male Supermodel Discovery">
+	<meta name="author" content="Frank Osodi, Bunor Creazioni, Africa's Male Supermodel Discovery">
+
+	<!-- Mobile Specific Metas
+  ================================================== -->
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+	<!-- CSS
+  ================================================== --> 
+  
+  <!--[if lt IE 9]>
+		<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+
+	<!-- Favicons
+	================================================== -->
+	<link rel="shortcut icon" href="images/favicon.ico">
+	<link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+	<link rel="apple-touch-icon" sizes="72x72" href="images/apple-touch-icon-72x72.png">
+	<link rel="apple-touch-icon" sizes="114x114" href="images/apple-touch-icon-114x114.png">
+  	
+    <!-- Included CSS files 
+	================================================== -->
+    
+  	<link rel="stylesheet" type="text/css"  href="css/main.min.css">
+	<link rel="stylesheet" type="text/css"  href="css/base.min.css">
+    <link rel="stylesheet" type="text/css"  href="css/color.css">
+	<link rel="stylesheet" type="text/css"  href="css/skeleton.min.css">
+	<link rel="stylesheet" type="text/css"  href="css/jquery.fancybox-1.3.4.min.css" media="screen" />
+    <link rel="stylesheet" type="text/css"  href="css/flexslider.min.css" media="screen" />
+  	<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800,300italic,400italic,600italic">   
+
+   <!-- Included javascript files 
+	================================================== -->
+    
+    
+    <script type="text/javascript" src="js/jquery-1.7.1.min.js"></script>
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+	<script type="text/javascript" src="js/custom.min.js"></script>
+    <script type="text/javascript" src="js/jquery.vegas.min.js" ></script>   
+	<script type="text/javascript" src="js/jquery.fancybox-1.3.4.min.js"></script>  
+    <script type="text/javascript" src="js/jquery.isotope.min.js" ></script>  
+    <script type="text/javascript" src="js/jquery.flexslider.min.js"></script>
+    <script type="text/javascript" src="js/main-fm.min.js"></script>  
+
+    <script>
+	
+		/* Google font load checking */
+		
+		var googleFontLoad = false;
+			/*googleFontLoad = true;*/	
+		
+		if(!googleFontLoad){
+			google.load("webfont", "1");	
+			google.setOnLoadCallback(function() {
+			WebFont.load({
+				google: {
+					families: [ 'Open+Sans']
+				}});				  
+				googleFontLoad = true;				  
+			});			
+		}			
+		
+		
+		/* Site Main plug-in initilize */
+		
+		jQuery(function($){
+			$("body").mainFm({
+				/*	
+				Set page background for each page. Just add src(Desktop size image) and src_small(Mobile size image) variables. 
+				Add those variables as per number of pages, If you need to remove the page background, just remove the src value and leave it blank 
+				[Ex: src : '', src_small : '']
+				 */
+				pageBackground 	: [	{ src : 'images/background/background1.jpg', src_small : 'images/background/background1_s.jpg'},
+									{ src : 'images/background/background2.jpg', src_small : 'images/background/background2_s.jpg'},
+									{ src : 'images/background/background3.jpg', src_small : 'images/background/background3_s.jpg'},
+									{ src : 'images/background/background4.jpg', src_small : 'images/background/background4_s.jpg'},
+									{ src : 'images/background/background5.jpg', src_small : 'images/background/background5_s.jpg'},
+									{ src : 'images/background/background6.jpg', src_small : 'images/background/background6_s.jpg'},
+									{ src : 'images/background/background7.jpg', src_small : 'images/background/background7_s.jpg'},
+									{ src : 'images/background/background8.jpg', src_small : 'images/background/background8_s.jpg'}		
+										],
+				/* Set background overlay patter */							
+				backgroundOverlay 	: 'images/background_overlay.png',
+				
+				/* Set the opening page. 
+				leave it blank value if you need to show the home page as a opening page*/
+				homePage : "",
+				
+				/* Set fade / slide animation for page transition */
+				pageAnimationType : 'fade',
+				
+				/* set pageHolder height, if you need to set all the page height in liquid and not align to center,
+				 just set value "100%" to the below 2 varaibles */	
+				pageHolderHeight_desktop : 420,
+				pageHolderHeight_ipad : 380,
+				
+				/* Full screen gallery options for autoplay and slideshow delay time*/
+				galleryAutoplay : "true",
+				gallerySlideshowDelay : 1.5,
+				/* Full screen gallery default image resize types. Options are fill/fit/none */
+				galleryImageResize : "fill"
+				
+			});
+		});
+
+
+				$(document).ready(function(){
+			
+			
+/* Hook up the FlexSlider */
+			$('.flexslider').flexslider({
+         		 slideshow: true,
+				 slideshowSpeed: 5000
+    		});
+			
+			
+/* Remove google map. This map will add when page display */
+			$(".page").find('#mapWrapper').each(function(){
+					$(this).data('map', $(this).children(':first-child'));
+					if(!$.browser.msie){
+						$(this).children(':first-child').remove();
+					}
+			});
+			
+			
+/* Initialize portfolio - isotope */
+			$(function(){
+			  
+			  var $container = $('#portfolio_container_1');
+			  var $optionSets = $('#options .option-set'),
+				  $optionLinks = $optionSets.find('a');
+		
+			  $optionLinks.click(function(){
+				var $this = $(this);
+				
+				// don't proceed if already selected
+				if ( $this.hasClass('selected') ) {
+				  return false;
+				}
+				var $optionSet = $this.parents('.option-set');
+				$optionSet.find('.selected').removeClass('selected');
+				$this.addClass('selected');
+		  
+				// make option object dynamically, i.e. { filter: '.my-filter-class' }
+				   var options = {},
+					  key = $optionSet.attr('data-option-key'),
+					  value = $this.attr('data-option-value');
+				  // parse 'false' as false boolean
+				  value = value === 'false' ? false : value;
+				  options[ key ] = value;
+				  if ( key === 'layoutMode' && typeof changeLayoutMode === 'function' ) {
+					// changes in layout modes need extra logic
+					changeLayoutMode( $this, options )
+				  } else {
+					// otherwise, apply new options
+					$container.isotope( options );
+				  }
+				
+				return false;
+			  });
+			  
+			});
+
+
+		/* Initialize the fancybox plug-in for portfolio */
+			var fancy_Obj = $("a[rel=example_group]");
+			fancy_Obj.fancybox({
+				'transitionIn'		: 'elastic',
+				'transitionOut'		: 'elastic',
+
+				'overlayColor'		: '#000',
+				'padding' 			: 0,
+				'margin' 			: 0,
+				'overlayOpacity'	:.75
+				
+			});	
+			
+			// Remove title tag, so that the title text doesn't show one tooltip when mouse hover the thumbnail
+			fancy_Obj.each(function(){
+				$(this).attr(('data-title'),$(this).find(".img_text").html());
+				if($(this).attr('title')){
+					$($(this).find(('.img_text')).html(String('<span class="img_txt_hold">'+$(this).attr('title')))+'</span>');
+				}
+				$(this).attr('title', '');
+			})		
+			
+		/* End fancybox plug-in for portfolio */
+			
+/* End portfolio - isotope */
+			
+			
+			// Email submit action			
+			$("#email_submit").click(function() { 
+									
+				$('#reply_message').removeClass();
+				$('#reply_message').html('')
+				var regEx = "";	 
+								
+				// validate Name				
+				var name = $("input#name").val();  
+				regEx=/^[A-Za-z .'-]+$/; 
+				if (name == "" || name == "Name"  || !regEx.test(name)) { 
+					$("input#name").val(''); 
+					$("input#name").focus();  
+					return false;  
+				}
+				
+				// validate Email						  
+				var email = $("input#email").val();  
+				regEx=/^[A-Za-z0-9._%-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}$/;											
+				if (email == "" || email == "Email" || !regEx.test(email)) { 
+					$("input#email").val(''); 
+					$("input#email").focus();  
+					return false;  
+				}  
+				
+				// validate comment			
+				var comments = $("textarea#comments").val(); 
+				if (comments == "" || comments == "Comments..." || comments.length < 2) { 
+					$("textarea#comments").val(''); 
+					$("textarea#comments").focus();  
+					return false;  
+				}  
+									
+				var dataString = 'name='+ $("input#name").val() + '&email=' + $("input#email").val() + '&comments=' + $("textarea#comments").val();									
+				$('#reply_message').addClass('email_loading');
+				
+				// Send form data to mailer.php 
+				$.ajax({
+					type: "POST",
+					url: "mailer.php",
+					data: dataString,
+					success: function() {
+						$('#reply_message').removeClass('email_loading');
+						$('#reply_message').addClass('list3');
+						$('#reply_message').html("Mail send sucessfully")
+						.hide()
+						.fadeIn(1500);
+							}
+						});
+				return false;
+				
+			});
+				
+		});
+
+	
+	</script>
+	
+	
+	<script type="text/javascript">
+$(document).ready(function() {
+    $("#submit_btn").click(function() { 
+        //get input field values
+		
+        var user_name       = $('input[name=name]').val(); 
+        var user_email      = $('input[name=email]').val();
+        var user_phone      = $('input[name=phone]').val();
+		var attach_file     = $('input[name=file_attach]')[0].files[0];
+        var user_message    = $('textarea[name=message]').val();
+        
+        //simple validation at client's end
+        //we simply change border color to red if empty field using .css()
+        var proceed = true;
+        if(user_name==""){ 
+            $('input[name=name]').css('border-color','red'); 
+            proceed = false;
+        }
+        if(user_email==""){ 
+            $('input[name=email]').css('border-color','red'); 
+            proceed = false;
+        }
+        if(user_phone=="") {    
+            $('input[name=phone]').css('border-color','red'); 
+            proceed = false;
+        }
+        if(user_message=="") {  
+            $('textarea[name=message]').css('border-color','red'); 
+            proceed = false;
+        }
+
+        //everything looks good! proceed...
+        if(proceed) 
+        {
+			$(".loading-img").show(); //show loading image
+			$(".submit_btn").hide(); //hide submit button
+			
+			//data to be sent to server			
+			var post_data = new FormData();    
+			post_data.append( 'userName', user_name );
+			post_data.append( 'userEmail', user_email );
+			post_data.append( 'userPhone', user_phone );
+			post_data.append( 'userMessage',user_message);
+			post_data.append( 'file_attach', attach_file );
+			
+			//instead of $.post() we are using $.ajax()
+			//that's because $.ajax() has more options and can be used more flexibly.
+			$.ajax({
+			  url: 'contact_me.php',
+			  data: post_data,
+			  processData: false,
+			  contentType: false,
+			  type: 'POST',
+			  dataType:'json',
+			  success: function(data){
+					//load json data from server and output message     
+					if(data.type == 'error')
+					{
+						output = '<div class="error">'+data.text+'</div>';
+					}else{
+						output = '<div class="success">'+data.text+'</div>';
+						
+						//reset values in all input fields
+						$('#contact_form input').val(''); 
+						$('#contact_form textarea').val(''); 
+					}
+					
+					$("#result").hide().html(output).slideDown(); //show results from server
+					$(".loading-img").hide(); //hide loading image
+					$(".submit_btn").show(); //show submit button
+			  }
+			});
+
+        }
+    });
+    
+    //reset previously set border colors and hide all message on .keyup()
+    $("#contact_form input, #contact_form textarea").keyup(function() { 
+        $("#contact_form input, #contact_form textarea").css('border-color',''); 
+        $("#result").slideUp();
+    });
+    
+});
+</script>
+	
+    
+</head>
+<body >
+
+
+<!--
+Site main frame begin
+Note: Don't edit main frame, except comment area
+-->
+
+
+<div class="mainContainer" >
+
+    <div class="header" >
+    	<div class="container headerContent" >
+        
+        	<div class="nav" >
+            	<div id="mobile_nav"> <span>SELECT PAGE </span> </div>
+                <ul>
+                	<!--  Add require site page navigation -->                    
+                    <li><a href="#home">HOME</a></li>
+					<li><a href="#">ABOUT</a>
+                    	<!-- Sub menu -->
+                    	<ul>
+                        	<li><a href="#aboutus">PROFILE</a></li>
+                        	<li><a href="#committee">COMMITTEE</a></li>
+                        </ul>
+                    </li>
+					<li><a href="#creator">CREATOR</a></li>
+                    <li><a href="#participate">PARTICIPATE</a></li>
+                    <li><a href="#eligible-countries">ELIGIBLE COUNTRIES</a></li>  
+                    <li><a href="#">GALLERY</a>
+                    	<!-- Sub menu -->
+                    	<ul>
+                        	<li><a href="#">PHOTO</a></li>
+                        	<li><a href="#">VIDEO</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#contactus" class="last">CONTACT US</a></li>                                      
+                </ul>
+
+             </div>
+              
+             <div class="topContact" >
+              	<span class="alignRight">
+                    <!--  Add phone number/email here -->
+                    <h6><span class="list1">+234 811 734 2945</span></h6>
+                </span>
+             </div>
+             
+        </div>
+	</div>
+ 
+ 
+	<div class="contentWarp container"  >
+            <div class="logo" >
+                <!-- Place your logo here. data-src-small use to add logo for mobile device -->
+				<a href="#home"><img src="images/logo.png" data-src-small="images/logo_s.png" alt="Africa's Male Supermodel Discovery"></a>
+      		</div>
+             
+            <div class="sixteen pageHolder" >
+                <!-- page content load here, don't place any content inside this tag -->
+            </div> 
+	</div>
+    
+ 	<div style="position:relative; height:20px; visibility:hidden"></div>
+
+  	<div class="push" ></div>
+  
+</div>
+
+
+<div class="footer" >
+	<div class="container " >
+    	
+        	<!-- Place your copyright text -->
+        	<div class="five columns"><h6 class="bottomText">2014 © Africa's Male Supermodel Discovery.</h6></div>
+            <!-- Email -->
+            <div class="five columns"><h6 class="bottomText"><span class="list2">info@africamalesupermodeldiscovery.com</span></h6></div>   
+            <!-- Social network web page link  -->
+            <div class="three columns">
+                <ul class="social_bookmarks noMargin">                 
+                  <li class="twitter noMargin"><a href="https://twitter.com/amsd_official" target="_blank">Follow us on Twitter</a></li>
+                  <li class="facebook noMargin"><a href="https://www.facebook.com/profile.php?id=100006296024750" target="_blank">Join our Facebook Group</a></li>
+                  <li class="youtube noMargin"><a href="https://www.youtube.com/channel/UC1ieHqghBAQDdJRJsjCU_aA/feed" target="_blank">Youtube</a></li>
+                </ul>
+            </div>			
+            <!-- Address -->
+            <div class="three columns"><h6 class="bottomText"><a class="hastip" title="Critical Technology Unit"  href="http://africamalesupermodeldiscovery.com/ctu" target="_blank">Website Developed by CTU</a></h6></div>
+        
+     </div>
+</div>
+
+
+<!-- End site main frame -->
+
+
+<!-- 
+Begin Page content
+ 
+Note: mobile_spacing class is used to add spacing arround the content in mobile device not in desktop,
+if you remove the mobile_spacing class, the layout design doesn't effect in desktop it only effect in mobile device
+
+If you need to show the page content on full height (liquid height), just add the attribute data-height-fixed="false" in page class div tag
+ -->
+ 
+
+
+<!-- Home page -->
+                
+<div class="page" data-id="home" >
+
+    
+    <div class="pgContent" >
+      
+    	 <div class="add_scroll full_size" >
+        <!-- Below content are placed inside the Scrollbar -->
+        
+        <div class="fifteen columns alpha" >
+                <div class="mobile_spacing" >
+                
+                <!-- 
+                	The fs_gallery class is used to identify this gallery to main plugin if you need to add more than one gallery
+                	just copy and past the below div to another page that's all.
+                -->
+                
+                <div class="fs_gallery_wrap fs_gallery" >
+                	<div class="fs_thumbs">
+                    
+                    	<!-- 
+                        	Each fsThumb div contain large image, thumbnail image, and animated text
+                        	The data-src attribute used to load High resolution image for desktop 
+                            The data-src-small attribute used to load Low resolution image for mobile device
+                            The data-imgResize attribute is used to set the image resize type. The options are fill / fit / none
+                            	fill- The image resize to cover over the browser window
+                                fit - The image resize to fit inside the browser window
+                                none - The image can't be resize just show the original size
+                            Below the fsThumb div the thumbnail image and caption text is added
+                         -->
+                         
+                        <div class="fsThumb" data-src="images/gallery/image1.jpg" data-src-small="images/gallery/image1_s.jpg" data-imgResize="fill"  >
+                        	<img  src="images/gallery/thumb1.jpg" class="fsThumb-scale" alt="Africa's Male Supermodel Discovery" />
+                        </div>
+                        
+                         <div class="fsThumb" data-src="images/gallery/image1.jpg" data-src-small="images/gallery/image1_s.jpg" data-imgResize="fill"  >
+                        	<img  src="images/gallery/thumb2.jpg" class="fsThumb-scale" alt="Africa's Male Supermodel Discovery" />
+                        </div>
+                        
+                     	<div class="fsThumb" data-src="images/gallery/image1.jpg" data-src-small="images/gallery/image1_s.jpg" data-imgResize="fill"  >
+                        	<img  src="images/gallery/thumb3.jpg" class="fsThumb-scale" alt="Africa's Male Supermodel Discovery" />
+                        </div>
+                         
+                        
+                        <div class="fsThumb" data-src="images/gallery/image1.jpg" data-src-small="images/gallery/image1_s.jpg" data-imgResize="fill"  >
+                        	<img  src="images/gallery/thumb4.jpg" class="fsThumb-scale" alt="Africa's Male Supermodel Discovery" />  
+                        </div>
+                        
+                        <div class="fsThumb" data-src="images/gallery/image1.jpg" data-src-small="images/gallery/image1_s.jpg" data-imgResize="fill"  >
+                        	<img  src="images/gallery/thumb5.jpg" class="fsThumb-scale" alt="Africa's Male Supermodel Discovery" />
+                        </div>
+                        
+                        <div class="fsThumb" data-src="images/gallery/image1.jpg" data-src-small="images/gallery/image1_s.jpg" data-imgResize="fill"  >
+                        	<img  src="images/gallery/thumb6.jpg" class="fsThumb-scale" alt="Africa's Male Supermodel Discovery" />
+                        </div>
+                        
+            		</div>
+                </div>
+
+              </div>   
+         	</div>
+            
+		</div>
+    </div>
+</div>
+
+<!-- End Home page -->                 
+  
+  
+  
+  
+            	
+<!-- About US page -->
+                
+<div class="page" data-id="aboutus" data-height-fixed="false">
+    <div class="pgContent" >
+                        
+        <div class="mobile_spacing">
+            <h4 class="title_light">AFRICA MALE SUPERMODEL DISCOVERY</h4>
+        </div>
+		
+		<div class="fifteen columns alpha" >
+                <div class="mobile_spacing">
+                    <p>Africa Male Supermodel Discovery is a TV reality show designed to discover Young/ Talented Male Models in Africa and give them an International platform to project their skills. The TV show will air for a full season on national and International channels.</p>
+				
+				    <h4 class="title_light">THE HUNT</h4>
+                    <p>Frank Osodi and his model scout team will go on an adventure to 16 African countries in search of young male talents after which 16 of them will be shortlisted for the TV Reality show that will be filmed in a geographic African location and broadcast to the World on Satellite and Online Television.</p>
+					
+					<h4 class="title_light">THE STYLE</h4>
+                    <p>The Male Models will be camped, drilled, trained and mentored by Top Photographers, designers and Model scouts from all over the world. Weekly Elimination will take place after different tasks; at the end only one man will win as the number one Male Supermodel in Africa. This Process is designed to project maximum entertainment while discovering the best talents in Africa.<br>
+					
+					Africa is said to be the next “it” continent and in Africa, this industry that legally employs the youths all over the world must not be left out. <br>
+					
+					The Broadcast Reach for Africa’s Male Supermodel Discovery is totally endless.</p>
+					
+					<h4 class="title_light">PRODUCTION</h4>
+                    <p>The Reality show will be Filmed by Tiger Republic Films. A Television and Film Company Based in Europe, America and Africa.</p>
+					
+					<p>So Far Tiger Republic has filmed ground breaking and Award winning TV Commercial, Live shows, Short Films, and Documentaries. The Vision for this project is to produce the best TV Reality show ever to come out of Africa.</p>
+					
+					<h4 class="title_light">WINNERS PACKAGE</h4>
+					<span class="list3">Modelling contract worth 50, 000 US Dollars from an International modelling Agency </span><br/>
+					
+					<span class="list3">Fashion spread in top International Magazines </span><br/>
+					
+					<span class="list3">Brand Ambassador for Top International Brands </span><br/>
+					
+					<span class="list3">An all expenses paid trip to South Africa </span><br/>
+					
+					<span class="list3">Brand New Car </span><br/>
+					
+                    <p>And lots of gifts from sponsors.</p>
+					
+                </div>
+        </div>
+                            
+        <div class="separator_mini"></div>  
+                        
+        <!--<div class="add_scroll medium_size">-->
+        <!-- Below content are placed inside the Scrollbar -->
+           
+                       
+                                                
+			    
+                         
+        <!-- End Scrollbar -->                  
+        <!--</div>-->
+            
+    </div>
+</div>
+
+<!-- End About US page -->
+
+
+
+
+
+<!-- Creator page -->
+                
+<div class="page" data-id="creator" data-height-fixed="false">
+    <div class="pgContent" >
+                        
+        <div class="mobile_spacing">
+            <h1 class="title_light">Creator/Producer</h1>
+        </div>
+                            
+        <div class="separator_mini"></div>  
+                        
+        <!-- <div class="add_scroll medium_size"> -->
+        <!-- Below content are placed inside the Scrollbar -->
+           
+            
+             <div class="eight columns  alpha">
+				<div class="mobile_spacing">
+					<p>This project is being put together by BUNOR CREAZIONI, owned by Nigerian fashion mogul, Frank Osodi Richard. Frank a former professional and West African top model has won for himself several awards over the years as a fashion designer, most notable among them are International designer of the year 1991-1992, fashion person of the year 2003. Frank is also the brain behind the highly successful annual international fashion show BLACK, BOLD AND JAZZY, and respectfully the organizer of the West African fashion week. It is important to state at this point that he dressed the very first black African to win the miss world crown, AGBANI DAREGO.</p>
+
+					<br>
+                    <div class="seven columns alpha">
+                        <div class="mobile_right_spacing">
+                            <img src="images/frank.jpg" data-width="100%" data-height="220px" class="scale-with-grid" alt="about image" />
+                        </div>
+                    </div>
+				</div>
+			</div>                
+                                                
+			<div class="seven columns">
+				<div class="mobile_spacing">
+                     <div class="separator_mini"></div>  
+                		<div class="addVideo" data-width="100%" data-height="220px" data-autoplay="false" data-url="http://vimeo.com/45778774" >
+                    	</div>
+					<hr> 
+                 	
+					<p>With the roots of his talent stemming from fashion designing and fashion consultancy, model management, media events and make up artistry. He was once the vice president of the Fashion Designers Association of Nigeria, FADAN.  Frank has over the years showcased his creations at so many fashion events. His is a regular feature at the South Africa fashion week, Vukani fashion awards, Mozambique fashion week, Africa fashion week London, PAHBA awards, Miss Africa U.S.A; Atlanta and Barbados and a host of other fashion fairs all over the world. </p>
+					
+				</div>
+				
+			</div>
+                           
+                        
+                                
+            <div class="fifteen columns alpha" >
+                <div class="mobile_spacing">
+                    <h3 class="title_light"></h3> 
+                    <p>He is currently the president of the model managers association of Nigeria (PROMMAN). He believes that Africa’s Male Supermodel Discovery is the next big thing to come from Africa to the World.</p>
+                    <hr>
+                 </div>
+            </div>
+                                
+                          
+           
+                         
+        <!-- End Scrollbar -->                  
+        <!-- </div> -->
+            
+    </div>
+</div>
+
+<!-- End Creator page -->
+
+
+
+
+
+<!-- participate page -->
+                
+<div class="page" data-id="participate" data-height-fixed="false" >
+     <div class="pgContent">
+	
+<!-- If you need to show the page content inside the scroll bar, just enable the below div tag and 
+	 remove the data-height-fixed attribute on the above page div tag-->
+     		
+		<!--<div class="add_scroll full_size">-->
+        <!-- Below content are placed inside the Scrollbar -->
+         
+
+         <div class="row" > <div class="bottom_spacing"></div> </div>
+         
+         <div class="one-third column alpha" >
+			<div class="mobile_spacing" >
+            	<!-- Tab Example-->
+             	<h3 class="title_light">PARTICIPANT APPLICATION</h3>
+				
+				<div class="fifteen columns alpha" >
+                <div class="mobile_spacing">
+                    <h3 class="title_light"></h3> 
+                    <p>Please read the preceding Eligibility Requirements before completing this application. The Eligibility Requirements contain important instructions regarding the videotape, photographs and other items, which must accompany any submitted participant application, as well as submission guidelines for your application package. And remember, above all else, you must BE HONEST! Any answer may be verified for accuracy. Don't answer a question hoping to give us the answer we "want" to hear.</p>
+					
+					<p>PLEASE NOTE: You must be AT OR ABOVE five feet and ten inches [5’10”] in height to be eligible although Producers reserve the right to make case-by-case exceptions. However, the Producers are looking for a variety of models.</p>
+					
+					<p>Participants on the show will be required to travel internationally and therefore are required to have a valid international passport.</p>
+					
+					<p>If you are currently represented by an agent or manager and are selected to be interviewed, you must furnish sufficient evidence to the Producers that you are able to terminate such representation in the event that you are selected to continue on in the casting for the show. Alternatively, you may be permitted to keep your representation as long as it does not interfere in any way with your ability to accept all prizes or otherwise perform the obligations of being selected to participate and actually participate in the show.</p>
+					
+					<p>You may be required to terminate any representation even if it does not conflict with the terms of your participation.</p>
+                    <hr>
+					<h4>*Please note that all fields are required, otherwise type NA if answer is unavailable*</h4>
+                 </div>
+            </div>     
+        	</div>
+        </div>
+                
+            
+		<!-- form -->                    
+		<div class="fifteen columns alpha" >
+			<div class="mobile_spacing" >
+				<h3>Participation Form</h3>
+                
+				 
+            		<!-- Add comment Form field -->
+					<form method="post" class="comments-form">
+                            
+						<fieldset id="contact_form">
+
+                        <div id="result"></div>
+                        <label for="firstname"><span>First Name</span>
+                        <input type="text" name="name" id="firstname" placeholder="Enter First Name" />
+                        </label>
+						
+						<label for="middlename"><span>Middle Name</span>
+                        <input type="text" name="name" id="middlename" placeholder="Enter Middle Name" />
+                        </label>
+						
+						<label for="lastname"><span>Last Name</span>
+                        <input type="text" name="name" id="lastname" placeholder="Enter Last Name" />
+                        </label>
+						
+						<label for="age"><span>Age</span>
+                        <input type="text" name="age" id="age" placeholder="Age" />
+                        </label>
+						
+						<label for="height"><span>Date of Birth</span>
+                        <input type="text" name="dob" id="dob" placeholder="Date of Birth" />
+                        </label>
+						
+						<label for="weight"><span>Height</span>
+                        <input type="text" name="height" id="height" placeholder="Height" />
+                        </label>
+						
+						<label for="age"><span>Weight</span>
+                        <input type="text" name="weight" id="weight" placeholder="Weight" />
+                        </label>
+						
+						<label for="passno"><span>International Passport No</span>
+                        <input type="text" name="passno" id="passno" placeholder="Passport No" />
+                        </label>
+						
+						<label for="passexpire"><span>International Passport Expiry Date</span>
+                        <input type="text" name="passexpire" id="passexpire" placeholder="Passport Expiry" />
+                        </label>
+						
+						<label for="address"><span>Address</span>
+                        <textarea name="address" id="address" placeholder="Enter Address"></textarea>
+                        </label>
+						
+						<label for="city"><span>City</span>
+                        <input type="text" name="city" id="city" placeholder="City" />
+                        </label>
+						
+						<label for="spr"><span>State/Province/Region</span>
+                        <input type="text" name="spr" id="spr" placeholder="State/Province/Region" />
+                        </label>
+						
+						<label for="zip"><span>Zip Code</span>
+                        <input type="text" name="zip" id="zip" placeholder="Zip Code" />
+                        </label>
+						
+						<label for="country"><span>Country</span>
+                        <input type="text" name="country" id="country" placeholder="Country" />
+                        </label>
+    
+                        <label for="phone"><span>Phone</span>
+                        <input type="text" name="phone" id="phone" placeholder="Phone Number" />
+                        </label>
+						
+						<label for="mobile"><span>Mobile/Cell</span>
+                        <input type="text" name="mobile" id="mobile" placeholder="Mobile/Cell" />
+                        </label>						
+    
+                        <label for="email"><span>Email Address</span>
+                        <input type="email" name="email" id="email" placeholder="Enter Your Email" />
+                        </label>						
+    
+                        <label for="url"><span>Website Url</span>
+                        <input type="url" name="url" id="url" placeholder="Enter Website Url" />
+                        </label>
+						
+						<label for="closefriend"><span>Name, Phone Number & Address of Cloest Friend</span>
+                        <textarea name="closefriend" id="closefriend" placeholder="Enter Name, Phone Number & Address of Cloest Friend"></textarea>
+                        </label>
+						
+						<label for="nearestrelative"><span>Name, Phone Number & Address of Nearest Relative</span>
+                        <textarea name="nearestrelative" id="nearestrelative" placeholder="Enter Name, Phone Number & Address of Nearest Relative"></textarea>
+                        </label>
+						
+						<label for="emergency"><span>Name, Phone Number & Address of an Emergency Contact & Relationship to you</span>
+                        <textarea name="emergency" id="emergency" placeholder="Name, Phone Number & Address of an Emergency Contact & Relationship to you"></textarea>
+                        </label>
+						
+						<label for="status"><span>Marital Status</span>
+                        <input type="text" name="status" id="status" placeholder="Marital Status" />
+                        </label>
+						
+						<label for="ifmarried"><span>If married or in a relationship, how would you rate your relationship on a scale of 1-10?</span>
+                        <textarea name="ifmarried" id="ifmarried" placeholder="If married or in a relationship, how would you rate your relationship on a scale of 1-10?"></textarea>
+                        </label>
+						
+						<label for="ifmarried2"><span>If married or in a relationship, how will your partner feel about the potential 2 month separation?</span>
+                        <textarea name="ifmarried2" id="ifmarried2" placeholder="If married or in a relationship, how will your partner feel about the potential 2 month separation?"></textarea>
+                        </label>
+						
+						<label for="education"><span>What is the highest level of education you’ve completed?</span>
+                        <input type="text" name="education" id="education" placeholder="Highest Education" />
+                        </label>
+						
+						<label for="school"><span>What school are you currently enrolled in?</span>
+                        <textarea name="school" id="school" placeholder="What school are you currently enrolled in?"></textarea>
+                        </label>
+						
+						<label for="school2"><span>What other school(s) have you attended? (Include the city and state) Describe your school</span>
+                        <textarea name="school2" id="school2" placeholder="What other school(s) have you attended? (Include the city and state) Describe your school"></textarea>
+                        </label>
+						
+						<label for="school3"><span>What do you study at school?</span>
+                        <textarea name="school3" id="school3" placeholder="What do you study at school?"></textarea>
+                        </label>
+						
+						<label for="activity"><span>What activities do you do at school? Sororities? Clubs? Groups?</span>
+                        <textarea name="activity" id="activity" placeholder="What activities do you do at school? Sororities? Clubs? Groups?"></textarea>
+                        </label>
+						
+						<label for="rivals"><span>What are your favourite things about your school? Do you have a lot of school pride? Who are your school’s rivals?</span>
+                        <textarea name="rivals" id="rivals" placeholder="What are your favourite things about your school? Do you have a lot of school pride? Who are your school’s rivals?"></textarea>
+                        </label>
+						
+						<label for="modelling"><span>If modelling doesn’t work out, what other career will you pursue?</span>
+                        <textarea name="modelling" id="modelling" placeholder="If modelling doesn’t work out, what other career will you pursue?"></textarea>
+                        </label>
+						
+						<label for="pro"><span>Are you a professional performer within the entertainment industry?  If yes, what do you do?</span>
+                        <textarea name="pro" id="pro" placeholder="Are you a professional performer within the entertainment industry?  If yes, what do you do?"></textarea>
+                        </label>
+						
+						<label for="acting"><span>Do you have any acting, singing or performing aspirations?  If yes, tell us your aims and goals?</span>
+                        <textarea name="acting" id="acting" placeholder="Do you have any acting, singing or performing aspirations?  If yes, tell us your aims and goals?"></textarea>
+                        </label>
+						
+						<label for="tv"><span>Have you ever appeared on television?  If yes, in what capacity did you appear and when?  Did you appear on national television?</span>
+                        <textarea name="tv" id="tv" placeholder="Have you ever appeared on television?  If yes, in what capacity did you appear and when?  Did you appear on national television?"></textarea>
+                        </label>
+						
+						<label for="mag"><span>Have you ever appeared in any magazines?  If yes, which magazine and in which issue?</span>
+                        <textarea name="mag" id="mag" placeholder="Have you ever appeared in any magazines?  If yes, which magazine and in which issue?"></textarea>
+                        </label>
+						
+						<label for="experience"><span>Do you have any experience as a model OF ANY KIND?  If yes, please explain, stating when and for what.  PLEASE NOTE:  You may not be eligible if you have modelled in a national campaign within the last five (5) years?</span>
+                        <textarea name="experience" id="experience" placeholder="Do you have any experience as a model OF ANY KIND?  If yes, please explain, stating when and for what.  PLEASE NOTE:  You may not be eligible if you have modelled in a national campaign within the last five (5) years?"></textarea>
+                        </label>
+						
+						<label for="contract"><span>Have you ever had a modelling contract?  If yes, please list name and address of the entity with which you had such modelling contract?</span>
+                        <textarea name="contract" id="contract" placeholder="Have you ever had a modelling contract?  If yes, please list name and address of the entity with which you had such modelling contract?"></textarea>
+                        </label>
+						
+						<label for="agent"><span>Have you ever been represented by a manager or agent?  If yes, please specify what the representation covered (e.g., modelling or acting)?</span>
+                        <textarea name="agent" id="agent" placeholder="Have you ever been represented by a manager or agent?  If yes, please specify what the representation covered (e.g., modelling or acting)?"></textarea>
+                        </label>
+						
+						<p><a class="list_hover pad" rel="example_group" href="images/sample-upload.jpg" class="type2"> 
+						<div class="text"></div>
+						<strong>Click here for sample picture to upload</strong></a></p>
+    
+                        <label for="phone"><span>Upload Head Shot Photo</span>
+                        <input type="file" name="file_attach" id="file_attach" />
+                        </label>
+						
+						<label for="phone"><span>Upload Side View Photo</span>
+                        <input type="file" name="file_attach" id="file_attach" />
+                        </label>
+						
+						<label for="phone"><span>Upload Full View Photo</span>
+                        <input type="file" name="file_attach" id="file_attach" />
+                        </label>
+						<br/>
+    
+                        <label><span>&nbsp;</span>
+						
+                        <button class="submit_btn" id="submit_btn">Submit Entry</button>
+                        <img src="ajax-loader.gif" class="loading-img" style="display:none">
+                        </label>
+                        </fieldset>
+            
+						<div class="clear"></div>
+            
+					</form>
+				 
+			</div>
+		</div>
+
+    
+    </div>
+</div>
+
+<!-- End participate page -->
+
+
+
+
+
+<!-- Portfolio page -->
+                
+
+<!-- End Portfolio page -->
+                
+                
+
+<!-- Gallery page -->
+                
+<div class="page" data-id="fullscreen_gallery" >
+
+    
+    <div class="pgContent" >
+      
+    	<div class="add_scroll full_size" >
+        <!-- Below content are placed inside the Scrollbar -->
+        
+        <div class="fifteen columns alpha" >
+                <div class="mobile_spacing" >
+                
+                <!-- 
+                	The fs_gallery class is used to identify this gallery to main plugin if you need to add more than one gallery
+                	just copy and past the below div to another page that's all.
+                -->
+                
+                <div class="fs_gallery_wrap fs_gallery" >
+                	<div class="fs_thumbs">
+                    
+                    	<!-- 
+                        	Each fsThumb div contain large image, thumbnail image, and animated text
+                        	The data-src attribute used to load High resolution image for desktop 
+                            The data-src-small attribute used to load Low resolution image for mobile device
+                            The data-imgResize attribute is used to set the image resize type. The options are fill / fit / none
+                            	fill- The image resize to cover over the browser window
+                                fit - The image resize to fit inside the browser window
+                                none - The image can't be resize just show the original size
+                            Below the fsThumb div the thumbnail image and caption text is added
+                         -->
+                         
+                        <div class="fsThumb" data-src="images/gallery/image1.jpg" data-src-small="images/gallery/image1_s.jpg" data-imgResize="fill"  >
+                        	<img  src="images/gallery/thumb1.jpg" class="fsThumb-scale" alt="Africa's Male Supermodel Discovery" />
+                        </div>
+                        
+                         <div class="fsThumb" data-src="images/gallery/image1.jpg" data-src-small="images/gallery/image1_s.jpg" data-imgResize="fill"  >
+                        	<img  src="images/gallery/thumb2.jpg" class="fsThumb-scale" alt="Africa's Male Supermodel Discovery" />
+                        </div>
+                        
+                     	<div class="fsThumb" data-src="images/gallery/image1.jpg" data-src-small="images/gallery/image1_s.jpg" data-imgResize="fill"  >
+                        	<img  src="images/gallery/thumb3.jpg" class="fsThumb-scale" alt="Africa's Male Supermodel Discovery" />
+                        </div>
+                         
+                        
+                        <div class="fsThumb" data-src="images/gallery/image1.jpg" data-src-small="images/gallery/image1_s.jpg" data-imgResize="fill"  >
+                        	<img  src="images/gallery/thumb4.jpg" class="fsThumb-scale" alt="Africa's Male Supermodel Discovery" />  
+                        </div>
+                        
+                        <div class="fsThumb" data-src="images/gallery/image1.jpg" data-src-small="images/gallery/image1_s.jpg" data-imgResize="fill"  >
+                        	<img  src="images/gallery/thumb5.jpg" class="fsThumb-scale" alt="Africa's Male Supermodel Discovery" />
+                        </div>
+                        
+                        <div class="fsThumb" data-src="images/gallery/image1.jpg" data-src-small="images/gallery/image1_s.jpg" data-imgResize="fill"  >
+                        	<img  src="images/gallery/thumb6.jpg" class="fsThumb-scale" alt="Africa's Male Supermodel Discovery" />
+                        </div>
+                        
+            		</div>
+                </div>
+
+              </div>   
+         	</div>
+            
+		</div>
+    </div>
+</div>
+<!-- End Gallery page -->
+
+
+
+
+
+<!-- Slide show page -->
+                
+<div class="page" data-id="eligible-countries" data-height-fixed="false" >
+    <div class="pgContent">
+                        
+    <!--<div class="add_scroll full_size">-->
+        <!-- Below content are placed inside the Scrollbar -->
+        
+            <div class="row alpha mobile_top_spacing" >
+			<div class="mobile_spacing desktop_right_spacing" >
+                    
+				<!-- Slide show -->
+                <div class="slideshow_medium"  >
+					<div id="flexslider-container" >
+						<div class="flexslider" >  
+							<ul class="slides border2 dark_border">
+								<li> <img src="images/slideshow/img1.jpg" alt="" /> </li>                
+							</ul>                 
+						</div>
+					</div>
+				</div>
+                
+			</div>
+		</div>
+             
+        <!-- End Scrollbar -->    
+        <!--</div>-->
+    
+    </div>   
+</div>
+
+<!-- End Slide show page -->
+
+
+
+
+<!-- Committee page -->
+                
+<div class="page" data-id="committee" data-height-fixed="false">
+     <div class="pgContent">
+    	
+<!-- If you need to show the page content inside the scroll bar, just enable the below div tag and 
+	 remove the data-height-fixed attribute on the above page div tag-->
+     
+		<!--<div class="add_scroll full_size">-->
+         <!-- Below content are placed inside the Scrollbar -->
+
+        
+<!-- Three variation of blog post -->
+         
+           
+		<div class="fifteen columns alpha" >
+			<div class="mobile_spacing" >
+				<h1 class="title_light">Committee</h1>
+				<hr>
+			</div>
+		</div>
+        
+        <hr> 
+       
+<!-- Blog post variation one-->
+        <div class="fifteen columns" >
+        	<!-- Title-->
+        	<div class="fifteen columns alpha" >
+				<div class="mobile_spacing" >
+					<h3 class="title_uppercase title_light">
+                		FRANK OSODI
+                	</h3>
+                    <br>
+				</div>
+			</div>
+        	
+			<div class="five columns alpha" >
+				<div class="mobile_spacing" >
+                	<!-- Blog post image -->
+                    <div class="medium_image img-align-left border2 dark_border">
+                        <a>
+                        	<img class="scale-with-grid" src="images/frank_comm.jpg" />
+                  
+                        </a>
+                    </div>
+                   <br>
+                   <br>
+                
+                <br class="clear">
+                <div class="separator_mini"></div>
+				</div>
+			</div>
+            
+          	<!-- Post content area -->
+			<div class="ten columns alpha" >
+				<div class="mobile_spacing" >
+					<p>Africa fashion mogul and former professional African top model, Frank has won for himself several awards over the years as a fashion designer. With the roots of his talent stemming from fashion designing, fashion consultancy, model management and media.  Frank has over the years showcased his creations at so many fashion events on major cities in Africa, Europe and America. It is important to state at this point that he dressed the very first black African to win the miss world crown, AGBANI DAREGO.</p>
+					
+                    <p>Frank Osodi has produced so many big Fashion shows across Africa and has high reputations in the Fashion and Modelling industry.</p>   
+                                                    
+				</div>
+			</div>
+		</div>
+        
+
+		<div class="separator_bar"></div> 
+        
+        
+<!-- Blog post variation Two -->
+        
+        <div class="fifteen columns" >
+        	<!-- Title-->
+        	<div class="fifteen columns alpha" >
+				<div class="mobile_spacing" >
+					<h3 class="title_uppercase title_light">
+                		NATALIA KOSTANOVA-FERNANDEZ
+                	</h3>
+                    <br>
+				</div>
+			</div>
+        	
+			<div class="five columns alpha" >
+				<div class="mobile_spacing" >
+                	<!-- Blog post image -->
+                    <div class="medium_image img-align-left border2 dark_border">
+                        <a>
+                        	<img class="scale-with-grid" src="images/natalia_comm.jpg" />
+                           	
+                        </a>
+                    </div>
+                   <br>
+                   <br>
+                
+                <br class="clear">
+				</ul>
+                <div class="separator_mini"></div>
+				</div>
+			</div>
+            
+          	<!-- Post content area -->
+			<div class="ten columns alpha" >
+				<div class="mobile_spacing" >
+					<p> Natalia Kostanova-Fernandez has worked in the fashion industry for over 18 years and is currently Fashion editor for Joburg Style and Nubian Bride magazines. With experience garnered as an international model, producer, creative director, project manager, event manager and marketing executive for the Legacy group, she brings with her a wealth of invaluable knowledge to any event.</p>
+                     
+
+				<hr> 
+			 </div>					 
+                                                    
+				</div>
+		</div>
+
+        
+        <div class="separator_bar"></div> 
+		
+		
+<!-- Blog post variation Three -->
+        
+        <div class="fifteen columns" >
+        	<!-- Title-->
+        	<div class="fifteen columns alpha" >
+				<div class="mobile_spacing" >
+					<h3 class="title_uppercase title_light">
+                		THEO UKPAA
+                	</h3>
+                    <br>
+				</div>
+			</div>
+        	
+			<div class="five columns alpha" >
+				<div class="mobile_spacing" >
+                	<!-- Blog post image -->
+                    <div class="medium_image img-align-left border2 dark_border">
+                        <a>
+                        	<img class="scale-with-grid" src="images/theo_comm.jpg" />
+                           	
+                        </a>
+                    </div>
+                   <br>
+                   <br>
+                
+                <br class="clear">
+				</ul>
+                <div class="separator_mini"></div>
+				</div>
+			</div>
+            
+          	<!-- Post content area -->
+			<div class="ten columns alpha" >
+				<div class="mobile_spacing" >
+					<p>International Award winning Film maker and Content Producer started his Arts in Los Angeles, USA 8 years ago. Since then he has learnt his creative production arts to international Brands across the world including Trace TV, Soundcity, Spice TV, British Council, Goethe Institute and CNN. He has filmed very creative TV commercials heave brands like MTN, Etisalat, Globacom, Virgin Atlantic and so on.</p>
+					
+                    <p>Theo has critically acclaimed credits and Awards to his name, as producer, director and writer in short Films at Various International Film festivals. He is the founding president of YesAfrica Initiative and executive director at Tiger Republic Films.</p>  
+                                                    
+				</div>
+			</div>
+		</div>
+        
+        <div class="separator_bar"></div>
+		
+ 
+<!-- Blog post variation Four -->
+        
+        <div class="fifteen columns" >
+        	<!-- Title-->
+        	<div class="fifteen columns alpha" >
+				<div class="mobile_spacing" >
+					<h3 class="title_uppercase title_light">
+                		MILLEN MAGESE
+                	</h3>
+                    <br>
+				</div>
+			</div>
+        	
+			<div class="five columns alpha" >
+				<div class="mobile_spacing" >
+                	<!-- Blog post image -->
+                    <div class="medium_image img-align-left border2 dark_border">
+                        <a>
+                        	<img class="scale-with-grid" src="images/millen_comm.jpg" />
+                           	
+                        </a>
+                    </div>
+                   <br>
+                   <br>
+                
+                <br class="clear">
+				</ul>
+                <div class="separator_mini"></div>
+				</div>
+			</div>
+            
+          	<!-- Post content area -->
+			<div class="ten columns alpha" >
+				<div class="mobile_spacing" >
+					<p>Millen Magese is a world-renown fashion model and humble humanitarian.  When she’s not rocking the runways in Europe, the United States, Asia and Africa, the former Miss Tanzania can often be found lending her time, talents, and high energy to making a difference in the lives of those who are less fortunate.  As a model, Ms. Magese is currently signed with Ford Models in NY, NY and Ice Model Management in Johannesburg, South Africa.</p>
+					
+                    <p>She has collaborated with many of the world’s top designers and brands and has appeared on the covers of Cosmopolitan, Ladybrielle, JCK (Ny), Uzuri, Bang, and Sawubona magazines and has been the subject of editorial features in Essence, True Love, Cosmopolitan, Elle, Opra, Marie Clare, Style, Glamour, and Wanted.</p>  
+                                                    
+				</div>
+			</div>
+		</div>
+        
+        <div class="separator_bar"></div>
+
+ 
+<!-- Blog post variation Five -->
+                <div class="fifteen columns" >
+        	<!-- Title-->
+        	<div class="fifteen columns alpha" >
+				<div class="mobile_spacing" >
+					<h3 class="title_uppercase title_light">
+                		REZE BONNA
+                	</h3>
+                    <br>
+				</div>
+			</div>
+        	
+			<div class="five columns alpha" >
+				<div class="mobile_spacing" >
+                	<!-- Blog post image -->
+                    <div class="medium_image img-align-left border2 dark_border">
+                        <a>
+                        	<img class="scale-with-grid" src="images/reze_comm.jpg" />
+                           	
+                        </a>
+                    </div>
+                   <br>
+                   <br>
+                
+                <br class="clear">
+				</ul>
+                <div class="separator_mini"></div>
+				</div>
+			</div>
+            
+          	<!-- Post content area -->
+			<div class="ten columns alpha" >
+				<div class="mobile_spacing" >
+					<p>Reze Bonna, is a trained architect/photographer and music producer/rep of several years’ experience, who studied and runs a fashion/ architectural photography outfit in South Africa, servicing a number of the agencies in the country. Doesn't believe any picture should be taken the same way twice, pushing the boundary, resulting in unique and interestingly different images.</p>
+					
+                    <p>He is a founding member of the group resolution which is a collective of creative photographers, and a member of the camera club of Johannesburg, and the professional photographers of America.</p>  
+                                                    
+				</div>
+			</div>
+		</div>
+        
+        
+
+         
+         <div class="separator_mini"></div>
+         
+         <!-- End Scrollbar -->            
+        <!--</div>--> 
+    
+    </div>
+</div>
+              
+             
+                
+                
+<!-- Contact Us page -->
+            
+<div class="page" data-id="contactus">
+    <div class="fifteen columns pgContent">
+        <div class="mobile_spacing">
+        
+            <h3 class="title_light">Contact Us</h3>
+                                    
+            <div class="separator_mini"></div>
+           
+           <!-- First column -->   
+            <div class="four columns  alpha">
+                <div class="mobile_right_spacing">
+                    <h4>Our Office</h4>             
+                    <p>
+                    54, Adelabu Street,<br/>
+                    Surulere, Lagos.<br/>
+					Nigeria
+                    <br/><br/>                      
+                    Tel: +234 811 734 2945<br/>
+                    Tel: +234 814 575 3803<br/>
+					Tel: +234 818 184 9496
+                    </p>
+                    <div class="separator_mini"></div>
+                </div>
+            </div>               
+             
+            <!-- Second column -->                     
+            <div class="six columns  alpha">
+                <h4>Get Direction</h4>
+                <div id="mapWrapper" class="mobile_right_spacing">
+                
+					<iframe width="100%" height="190" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps/ms?msa=0&amp;msid=215053730209192398094.0004f69e7b5cb5d6e0329&amp;hl=en&amp;ie=UTF8&amp;t=m&amp;ll=6.500558,3.350058&amp;spn=0.008528,0.01502&amp;z=15&amp;output=embed"></iframe>
+                    
+                </div>                   
+            </div>            
+            
+            <!-- Third column -->                          
+            <div id="contact" class="five columns" >
+                <div class="mobile_right_spacing">
+                	<hr>                     
+                    <form name="contact" method="post" >
+                        <input type="text" value="Name" id="name" name="name"  
+                        	onfocus="if(this.value == 'Name') {this.value = '';}"	
+                            onblur="if (this.value == '') {this.value = 'Name';}" />
+                        <input type="text" value="Email" id="email" name="email"  
+                        	onfocus="if(this.value == 'Email') {this.value = '';}"  
+                            onblur="if (this.value == '') {this.value = 'Email';}" />
+                        <hr>                                 
+                        <textarea cols="30" rows="5" id="comments" name="comments"	
+                        	onfocus="if(this.value == 'Comments...') {this.value = '';}" 
+                            onblur="if (this.value == '') {this.value = 'Comments...';}">Comments...</textarea>
+                        <br/>                                
+                        <button type="submit" id="email_submit"  class="button alignLeft">SEND</button>                                  
+                        <div id="reply_message" class="email_loading" ></div>                            
+                    </form>                             
+                </div>
+            </div> 
+                          
+        </div>
+    </div>
+</div>
+
+<!-- End Contact Us page -->
+
+
+
+</body>
+</html>
